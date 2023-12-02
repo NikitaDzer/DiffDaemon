@@ -7,13 +7,14 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "../include/backup.h"
-#include "../include/config.h"
-#include "../include/error.h"
-#include "../utils/copy.h"
-#include "../utils/apply.h"
-#include "../utils/diff.h"
-#include "../utils/hash.h"
+#include "include/backup.h"
+#include "include/config.h"
+#include "include/error.h"
+
+#include "utils/copy.h"
+#include "utils/apply.h"
+#include "utils/diff.h"
+#include "utils/hash.h"
 
 
 typedef struct BackupDescr

@@ -1,9 +1,9 @@
-#ifndef POLL_H
-#define POLL_H
+#ifndef INOTIFY_H
+#define INOTIFY_H
 
 
 int set_inotify_root( const char *const dir_path);
 int poll_inotify( void);
 
 
-#endif // POLL_H
+#endif // INOTIFY_H

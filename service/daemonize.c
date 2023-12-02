@@ -5,8 +5,8 @@
 #include <signal.h>
 #include <fcntl.h>
 
-#include "../include/daemonize.h"
-#include "../include/error.h"
+#include "include/daemonize.h"
+#include "include/error.h"
 
 
 static int ignore_signals( void)

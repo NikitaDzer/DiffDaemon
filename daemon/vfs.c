@@ -7,9 +7,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "../include/config.h"
-#include "../include/error.h"
-#include "../include/vfs.h"
+#include "include/config.h"
+#include "include/error.h"
+#include "include/vfs.h"
 
 
 static bool is_reg_file( const struct dirent *const entry) 

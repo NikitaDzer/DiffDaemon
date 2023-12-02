@@ -2,7 +2,7 @@
 #define ACTION_H
 
 
-#include "config.h"
+#include "include/config.h"
 
 
 typedef enum ActionType

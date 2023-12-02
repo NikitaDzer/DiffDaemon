@@ -6,17 +6,17 @@
 #include <sys/mman.h>
 #include <sys/shm.h>
 #include <unistd.h>
-#include <fcntl.h>
 #include <signal.h>
+#include <fcntl.h>
 
-#include "../include/signal.h"
-#include "../include/error.h"
-#include "../include/config.h"
-#include "../include/io.h"
-#include "../include/daemon.h"
-#include "../include/signal.h"
-#include "../include/shmem.h"
-#include "../include/sem.h"
+#include "include/signal.h"
+#include "include/error.h"
+#include "include/config.h"
+#include "include/io.h"
+#include "include/daemon.h"
+#include "include/signal.h"
+#include "include/shmem.h"
+#include "include/sem.h"
 
 
 static void handle_io_signal( int sig, siginfo_t *si, void *ucontext)

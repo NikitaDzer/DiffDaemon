@@ -5,8 +5,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include "../include/error.h"
-#include "copy.h"
+#include "include/error.h"
+#include "utils/copy.h"
 
 
 int copy_file( const char *const dest_path, const char *const src_path)

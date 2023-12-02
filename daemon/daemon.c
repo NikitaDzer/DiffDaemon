@@ -6,17 +6,17 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "../include/daemonize.h"
-#include "../include/inotify.h"
-#include "../include/daemon.h"
-#include "../include/backup.h"
-#include "../include/signal.h"
-#include "../include/config.h"
-#include "../include/watch.h"
-#include "../include/event.h"
-#include "../include/error.h"
-#include "../include/sem.h"
-#include "../include/cwd.h"
+#include "include/daemonize.h"
+#include "include/inotify.h"
+#include "include/daemon.h"
+#include "include/backup.h"
+#include "include/signal.h"
+#include "include/config.h"
+#include "include/watch.h"
+#include "include/event.h"
+#include "include/error.h"
+#include "include/sem.h"
+#include "include/cwd.h"
 
 
 static bool dem_running  = true;

@@ -4,7 +4,7 @@
 #include <string.h>
 #include <assert.h>
 
-#include "../include/cmdline.h"
+#include "include/cmdline.h"
 
 
 typedef enum InputError

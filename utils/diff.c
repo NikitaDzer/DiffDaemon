@@ -6,8 +6,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include "../include/error.h"
-#include "diff.h"
+#include "include/error.h"
+#include "utils/diff.h"
 
 
 int diff( const char *const file1_path,

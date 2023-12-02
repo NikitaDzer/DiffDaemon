@@ -6,8 +6,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include "../include/error.h"
-#include "apply.h"
+#include "include/error.h"
+#include "utils/apply.h"
 
 
 int apply( const char *const  file_path,

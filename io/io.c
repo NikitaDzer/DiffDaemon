@@ -9,18 +9,18 @@
 #include <signal.h>
 #include <fcntl.h>
 
-#include "../include/daemonize.h"
-#include "../include/action.h"
-#include "../include/backup.h"
-#include "../include/config.h"
-#include "../include/signal.h"
-#include "../include/error.h"
-#include "../include/watch.h"
-#include "../include/shmem.h"
-#include "../include/sem.h"
-#include "../include/vfs.h"
-#include "../include/cwd.h"
-#include "../include/io.h"
+#include "include/daemonize.h"
+#include "include/action.h"
+#include "include/backup.h"
+#include "include/config.h"
+#include "include/signal.h"
+#include "include/error.h"
+#include "include/watch.h"
+#include "include/shmem.h"
+#include "include/sem.h"
+#include "include/vfs.h"
+#include "include/cwd.h"
+#include "include/io.h"
 
 
 typedef enum IOError

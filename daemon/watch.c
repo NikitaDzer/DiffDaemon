@@ -7,8 +7,8 @@
 #include <sys/inotify.h>
 #include <unistd.h>
 
-#include "../include/watch.h"
-#include "../include/error.h"
+#include "include/watch.h"
+#include "include/error.h"
 
 
 typedef struct WatchEntry

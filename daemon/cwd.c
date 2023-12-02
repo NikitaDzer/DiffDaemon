@@ -5,8 +5,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "../include/config.h"
-#include "../include/cwd.h"
+#include "include/config.h"
+#include "include/cwd.h"
 
 
 const char *find_cwd( const char *const pid_str)

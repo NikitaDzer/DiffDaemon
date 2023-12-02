@@ -8,13 +8,13 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "../include/backup.h"
-#include "../include/config.h"
-#include "../include/watch.h"
-#include "../include/event.h"
-#include "../include/error.h"
-#include "../include/poll.h"
-#include "../include/vfs.h"
+#include "include/inotify.h"
+#include "include/backup.h"
+#include "include/config.h"
+#include "include/watch.h"
+#include "include/event.h"
+#include "include/error.h"
+#include "include/vfs.h"
 
 
 static int use_dir( const struct dirent *const entry,

@@ -8,11 +8,11 @@
 #include <sys/inotify.h>
 #include <unistd.h>
 
-#include "../include/backup.h"
-#include "../include/config.h"
-#include "../include/event.h"
-#include "../include/watch.h"
-#include "../include/error.h"
+#include "include/backup.h"
+#include "include/config.h"
+#include "include/event.h"
+#include "include/watch.h"
+#include "include/error.h"
 
 
 typedef struct EventEntry

@@ -6,14 +6,14 @@
 #include <sys/mman.h>
 #include <sys/shm.h>
 #include <unistd.h>
-#include <fcntl.h>
 #include <signal.h>
+#include <fcntl.h>
 
-#include "../include/signal.h"
-#include "../include/error.h"
-#include "../include/config.h"
-#include "../include/signal.h"
-#include "../include/shmem.h"
+#include "include/signal.h"
+#include "include/error.h"
+#include "include/config.h"
+#include "include/signal.h"
+#include "include/shmem.h"
 
 
 static const key_t SHM_KEY = 0xDED007;

@@ -13,8 +13,8 @@
 #include <sys/msg.h>
 #include <sys/mman.h>
 
-#include "../include/sem.h"
-#include "../include/error.h"
+#include "include/sem.h"
+#include "include/error.h"
 
 
 static const char SEM_NAME[] = "DD_SEM";
