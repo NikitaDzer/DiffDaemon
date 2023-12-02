@@ -14,6 +14,11 @@ int main( const int argc, const char *argv[])
         const char *pid_str = NULL;
         const ProgMode mode = parse_cmdline( argc, argv, &pid_str);
 
+        if ( mode == PROG_HELP_MODE )
+        {
+                return EXIT_SUCCESS;
+        }
+
         if ( mode == PROG_BAD_MODE )
         {
                 return EXIT_FAILURE;
