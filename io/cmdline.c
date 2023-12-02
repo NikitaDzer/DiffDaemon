@@ -4,16 +4,18 @@
 #include <string.h>
 #include <assert.h>
 
+#include <unistd.h>
+
 #include "include/cmdline.h"
+#include "include/config.h"
 
 
 typedef enum InputError
 {
         INPUT_NO_MODE         = 1,
         INPUT_PLURAL_MODES    = 2,
-        INPUT_NO_PID          = 3,
-        INPUT_PLURAL_PIDS     = 4,
-        INPUT_UNSPECIFIED_PID = 5,
+        INPUT_PLURAL_PIDS     = 3,
+        INPUT_UNSPECIFIED_PID = 4,
 } InputError;
 
 
@@ -67,10 +69,6 @@ static void print_error( const InputError error)
                 case INPUT_PLURAL_MODES:
                         printf( "Cannot use DD in plural modes.\n");
                         break;
-
-                case INPUT_NO_PID:
-                        printf( "Process's pid is not specified.\n");
-                        break;
                 
                 case INPUT_PLURAL_PIDS:
                         printf( "Only one process can be watched.\n");
@@ -90,6 +88,8 @@ static void print_error( const InputError error)
 ProgMode parse_cmdline( const int argc, const char *argv[],
                         const char **const pid_str)
 {
+        static char pid_buffer[MAX_PATH_SZ] = { 0 };
+
         if ( is_help_mode( argc, argv) )
         {
                 print_help();
@@ -130,6 +130,14 @@ ProgMode parse_cmdline( const int argc, const char *argv[],
                 }
         }
 
+        if ( pid_opt_count == 0 )
+        {
+                snprintf( pid_buffer, sizeof( pid_buffer), "%d", getpid());
+
+                *pid_str = pid_buffer;
+                was_pid_set = true;
+        }
+
         if ( !(was_dem_opt || was_int_opt) )
         {
                 print_error( INPUT_NO_MODE);
@@ -140,13 +148,6 @@ ProgMode parse_cmdline( const int argc, const char *argv[],
         if ( was_dem_opt && was_int_opt )
         {
                 print_error( INPUT_PLURAL_MODES);
-
-                return PROG_BAD_MODE;
-        }
-
-        if ( pid_opt_count == 0 )
-        {
-                print_error( INPUT_NO_PID);
 
                 return PROG_BAD_MODE;
         }
@@ -167,9 +168,7 @@ ProgMode parse_cmdline( const int argc, const char *argv[],
         
         if ( was_dem_opt )
         {
-                /* unsupported yet */
                 return PROG_DEM_MODE;
-                return PROG_BAD_MODE;
         }
 
         if ( was_int_opt )
