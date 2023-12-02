@@ -132,13 +132,9 @@ void dem_close( void)
         dem_running = false;
 }
 
-int dem_run( const char *const pid_str)
+int dem_run( const char *const initial_cwd)
 {
-        cwd = find_cwd( pid_str);
-        if ( cwd == NULL )
-        {
-                return ret_sys_err();
-        }
+        cwd = initial_cwd;
 
         const int ifd = get_ifd();
         if ( is_sys_err( get_ifd()) )

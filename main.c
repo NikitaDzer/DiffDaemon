@@ -3,11 +3,11 @@
 
 #include "include/io.h"
 #include "include/sem.h"
+#include "include/cwd.h"
 #include "include/error.h"
 #include "include/signal.h"
 #include "include/daemon.h"
 #include "include/cmdline.h"
-
 
 int main( const int argc, const char *argv[])
 {
@@ -20,6 +20,12 @@ int main( const int argc, const char *argv[])
         }
 
         if ( mode == PROG_BAD_MODE )
+        {
+                return EXIT_FAILURE;
+        }
+
+        const char *cwd = find_cwd( pid_str);
+        if ( cwd == NULL )
         {
                 return EXIT_FAILURE;
         }
@@ -47,7 +53,7 @@ int main( const int argc, const char *argv[])
                         return EXIT_FAILURE;
                 }
 
-                res = dem_run( pid_str);
+                res = dem_run( cwd);
                 if ( is_sys_err( res) )
                 {
                         dem_free();

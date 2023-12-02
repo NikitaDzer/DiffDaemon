@@ -3,10 +3,10 @@
 
 
 #include <stdbool.h>
+#include <stdio.h>
 
 
 static const int SYS_DEFAULT_ERR = -1;
-
 
 #define ret_sys_err() \
         (fprintf( stderr, "ERROR: %s:%d\n", __FILE__, __LINE__), fflush( stderr), RET_SYS_ERR())

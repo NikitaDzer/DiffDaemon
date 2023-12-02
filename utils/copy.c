@@ -28,8 +28,6 @@ int copy_file( const char *const dest_path, const char *const src_path)
         else
         {
                 int wstatus = 0;
-                wait( &wstatus);
-
-                return 0;
+                return wait( &wstatus);
         }
 }

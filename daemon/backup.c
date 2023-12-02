@@ -155,9 +155,13 @@ int add_backup( const char *const file_path)
         const char *const backup_path = get_backup_path( file_path);
 
         int res = copy_file( sample_path, file_path);
-        if ( is_sys_err( res) )
+        if ( res == -1 )
         {
-                return ret_sys_err();
+                /**
+                 * Sometimes copy cannot complete its work,
+                 * so we don't make backup of this file.
+                 */
+                return 0;
         }
 
         BackupDescr descr = { 0 };

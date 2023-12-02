@@ -11,7 +11,7 @@ int  dem_fork ( void);
 int  dem_init ( void);
 int  dem_free ( void);
 void dem_close( void);
-int  dem_run  ( const char *const pid_str);
+int  dem_run  ( const char *const initial_cwd);
 
 
 #endif // DAEMON_H
