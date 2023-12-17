@@ -23,8 +23,7 @@
 #include "include/io.h"
 
 
-typedef enum IOError
-{
+typedef enum IOError {
         NO_ERROR        = 0,
         ERROR_BAD_INPUT = 1,
         ERROR_DEM_FAIL  = 2,
@@ -33,14 +32,14 @@ typedef enum IOError
 
 
 static const char NO_ERROR_MSG[]        = "";
-static const char ERROR_BAD_INPUT_MSG[] = "Bad input.\n";
 static const char ERROR_DEM_FAIL_MSG[]  = "Daemon failure.\n";
 static const char ERROR_IO_FAIL_MSG[]   = "IO failure.\n";
 
-static const char ACTION_CLOSE_TEXT [] = "close";
-static const char ACTION_APPLY_TEXT [] = "apply";
-static const char ACTION_DIFF_TEXT  [] = "diff";
-static const char ACTION_CHPID_TEXT [] = "chpid";
+static const char ACTION_HELP_TEXT[]   = "help";
+static const char ACTION_CLOSE_TEXT[]  = "close";
+static const char ACTION_APPLY_TEXT[]  = "apply";
+static const char ACTION_DIFF_TEXT[]   = "diff";
+static const char ACTION_CHPID_TEXT[]  = "chpid";
 static const char ACTION_CHTIME_TEXT[] = "chtime";
 
 
@@ -65,6 +64,35 @@ static int print_buf( const char *const buf, const int size)
         return 0;
 }
 
+static int print_help()
+{
+        #define MAX_HELP_MSG_SIZE 4096
+
+        static char help_msg[MAX_HELP_MSG_SIZE] = { 0 };
+        static int help_msg_len = 0;
+
+        if ( help_msg_len == 0 )
+        {
+                help_msg_len = snprintf( help_msg, sizeof( help_msg),
+                    "  %-6s               Print help message.                           \n"
+                    "  %-6s               Shutdown Diff Daemon.                         \n"
+                    "  %-6s <file> <num>  Restore (current - <num>) state of <file>.    \n"
+                    "  %-6s <file> <num>  Print the last <num> of <file> changes.       \n"
+                    "  %-6s <pid>         Change monitored dir to cwd of <pid> process. \n"
+                    "  %-6s <num>         Change period to <num> for detecting changes. \n",
+                    ACTION_HELP_TEXT, ACTION_CLOSE_TEXT, ACTION_APPLY_TEXT, 
+                    ACTION_DIFF_TEXT, ACTION_CHPID_TEXT, ACTION_CHTIME_TEXT
+                );
+
+                /**
+                 * In release snprintf must fill help message correctly.
+                 */
+                assert( help_msg_len != MAX_HELP_MSG_SIZE);
+        }
+
+        return print_buf( help_msg, help_msg_len);
+}
+
 static int print_error( const IOError err)
 {
         const char *msg = NULL;
@@ -76,8 +104,7 @@ static int print_error( const IOError err)
                         break;
 
                 case ERROR_BAD_INPUT:
-                        msg = ERROR_BAD_INPUT_MSG;
-                        break;
+                        return print_help();
 
                 case ERROR_DEM_FAIL:
                         msg = ERROR_DEM_FAIL_MSG;
@@ -167,6 +194,13 @@ static int handle_input( Action *const action)
         }
 
         if ( strncmp( type, 
+                      ACTION_HELP_TEXT, 
+                      sizeof( ACTION_HELP_TEXT)) == 0 )
+        {
+                return print_help();
+        }
+
+        if ( strncmp( type, 
                       ACTION_APPLY_TEXT, 
                       sizeof( ACTION_APPLY_TEXT)) == 0 )
         {
@@ -177,7 +211,7 @@ static int handle_input( Action *const action)
                              "%s %d",
                              tmpbuf, &rev_state) != 2 )
                 {
-                        return print_error( ERROR_BAD_INPUT);
+                        return print_help();
                 }
 
                 action->type = ACTION_APPLY;
@@ -198,7 +232,7 @@ static int handle_input( Action *const action)
                              "%s %d",
                              tmpbuf, &rev_state) != 2 )
                 {
-                        return print_error( ERROR_BAD_INPUT);
+                        return print_help();
                 }
 
                 action->type = ACTION_DIFF;
@@ -218,7 +252,7 @@ static int handle_input( Action *const action)
                              "%s",
                              tmpbuf) != 1 )
                 {
-                        return print_error( ERROR_BAD_INPUT);
+                        return print_help();
                 }
 
                 action->type = ACTION_CHPID;
@@ -237,7 +271,7 @@ static int handle_input( Action *const action)
                              "%lg",
                              &time) != 1 )
                 {
-                        return print_error( ERROR_BAD_INPUT);
+                        return print_help();
                 }
 
                 action->type      = ACTION_CHTIME;
@@ -255,8 +289,7 @@ static int handle_input( Action *const action)
                 return 0;
         }
 
-
-        return print_error( ERROR_BAD_INPUT);
+        return print_help();
 }
 
 static int make_fifo( const char *const path)
