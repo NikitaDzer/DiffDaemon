@@ -1,7 +1,8 @@
 # DiffDaemon - track your changes
 
 ## Description
-DiffDaemon is a linux daemon that save file system changes and restore previous states.
+DiffDaemon is a linux daemon that save file system changes and restore previous states. <br>
+Incremental backups are saved until the OS is restarted.
 
 ## Prerequisites
 
@@ -25,19 +26,20 @@ make -C build -j4
 ~/DiffDaemon>./build/ddaemon -h
 Diff Daemon (or DD)
 Options:
-	-h         Print help.
-	-p <pid>   Specify process's pid to watch.
+	-h         Print help message.
 	-d         Use DD as daemon.
 	-i         Use DD in the interactive mode.
+	-p <pid>   Specify process <pid> to track its cwd (default = DD pid).
+
 ~/DiffDaemon>./build/ddaemon -d                         # Run DD as daemon.
-~/DiffDaemon>echo "It's a me,\n" >> mario.txt           # Create file with the initial text.
+~/DiffDaemon>echo "It is a me,\n" >> mario.txt          # Create file with the initial text.
 ~/DiffDaemon>echo "Mario!" >> mario.txt                 # Change file content.
-~/DiffDaemon>echo "diff mario.txt 1" > /tmp/dd_input    # Make diff with the previous (current - 1) state.
+~/DiffDaemon>echo "diff mario.txt 1" > /tmp/dd_input     # Make diff with the previous state.
 ~/DiffDaemon>cat /tmp/dd_output                         # Print diff.
 --- /tmp/dd_tmpfile
 +++ /home/nikitos/DiffDaemon/mario.txt
 @@ -1 +1,2 @@
- It's a me,\n
+ It is a me,\n
 +Mario!
 ~/DiffDaemon>echo "close" > /tmp/dd_input # Shutdwon daemon.
 ```

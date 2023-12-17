@@ -12,9 +12,9 @@ typedef enum ProgMode
 
 
 static const char OPT_HELP[] = "-h";
-static const char OPT_PID [] = "-p";
 static const char OPT_INT [] = "-i";
 static const char OPT_DEM [] = "-d";
+static const char OPT_PID [] = "-p";
 
 
 ProgMode parse_cmdline( const int argc, const char *argv[],

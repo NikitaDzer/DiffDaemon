@@ -51,11 +51,11 @@ static void print_help()
 {
         printf( "## Diff Daemon (or DD) ##\n"
                 "Options:\n"
-                "\t%s         Print help.\n"
-                "\t%s <pid>   Specify process's pid to watch.\n"
+                "\t%s         Print help message.\n"
                 "\t%s         Use DD as daemon.\n"
-                "\t%s         Use DD in the interactive mode.\n",
-                OPT_HELP, OPT_PID, OPT_DEM, OPT_INT);
+                "\t%s         Use DD in the interactive mode.\n"
+	            "\t%s <pid>   Specify process <pid> to track its cwd (default = DD pid).\n",
+                OPT_HELP, OPT_DEM, OPT_INT, OPT_PID);
 }
 
 static void print_error( const InputError error)
